@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Drizzle } from 'drizzle';
+import { DrizzleContext } from "drizzle-react";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import './css/index.css';
+import './css/App.css';
+
+import App from './components/App';
+
+import drizzleOptions from "./drizzle";
+
+const drizzle = new Drizzle(drizzleOptions);
+
+ReactDOM.render(
+	<DrizzleContext.Provider drizzle={drizzle}>
+		<App />
+	</DrizzleContext.Provider>,
+	document.getElementById('root')
+);
